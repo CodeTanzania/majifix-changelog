@@ -20,6 +20,7 @@
 import mongoose, { Schema } from 'mongoose';
 import { Status } from '@codetanzania/majifix-status';
 import { Priority } from '@codetanzania/majifix-priority';
+import { ServiceRequest } from '@codetanzania/majifix-service-request';
 import { models } from '@codetanzania/majifix-common';
 import actions from 'mongoose-rest-actions';
 import async from 'async';
@@ -84,7 +85,6 @@ const ChangelogSchema = new Schema(
       type: ObjectId,
       ref: Status.MODEL_NAME,
       index: true,
-      autoset: true,
       exists: true,
       autopopulate: Status.OPTION_AUTOPOPULATE,
     },
@@ -109,7 +109,6 @@ const ChangelogSchema = new Schema(
       type: ObjectId,
       ref: Priority.MODEL_NAME,
       index: true,
-      autoset: true,
       exists: true,
       autopopulate: Priority.OPTION_AUTOPOPULATE,
     },
@@ -128,10 +127,10 @@ const ChangelogSchema = new Schema(
       ref: 'Party',
       index: true,
       exists: true,
-      autopopulate: {
-        select: 'name email phone',
-        maxDepth: 1,
-      },
+      // autopopulate: {
+      //   select: 'name email phone',
+      //   maxDepth: 1,
+      // },
     },
 
     /**
@@ -148,10 +147,10 @@ const ChangelogSchema = new Schema(
       ref: 'Party',
       index: true,
       exists: true,
-      autopopulate: {
-        select: 'name email phone',
-        maxDepth: 1,
-      },
+      // autopopulate: {
+      //   select: 'name email phone',
+      //   maxDepth: 1,
+      // },
     },
 
     /**
@@ -175,6 +174,7 @@ const ChangelogSchema = new Schema(
       index: true,
       trim: true,
       searchable: true,
+      fake: true,
     },
 
     /**
@@ -219,6 +219,7 @@ const ChangelogSchema = new Schema(
     shouldNotify: {
       type: Boolean,
       default: false,
+      fake: true,
     },
 
     /**
@@ -240,6 +241,7 @@ const ChangelogSchema = new Schema(
     wasNotificationSent: {
       type: Boolean,
       default: false,
+      fake: true,
     },
 
     /**
@@ -262,6 +264,7 @@ const ChangelogSchema = new Schema(
       index: true,
       enum: VISIBILITIES,
       default: VISIBILITY_PRIVATE,
+      fake: true,
     },
   },
   SCHEMA_OPTIONS
@@ -281,7 +284,7 @@ const ChangelogSchema = new Schema(
  * @version 0.1.0
  * @private
  */
-ChangelogSchema.pre('validate', next => {
+ChangelogSchema.pre('validate', function preValidate(next) {
   // always make status change to trigger notification and public viewable
   if (this.status) {
     this.shouldNotify = true;
@@ -351,7 +354,7 @@ ChangelogSchema.statics.track = function track(changes, done) {
   }
 
   // refs
-  const ServiceRequest = mongoose.model(SERVICEREQUEST_MODEL_NAME);
+  // const ServiceRequest = mongoose.model(SERVICEREQUEST_MODEL_NAME);
 
   return async.waterfall(
     [

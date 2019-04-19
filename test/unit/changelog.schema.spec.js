@@ -29,7 +29,6 @@ describe('Changelog', () => {
       expect(status.type.name).to.be.equal('ObjectId');
       expect(status.index).to.be.true;
       expect(status.exists).to.be.true;
-      expect(status.autoset).to.be.true;
       expect(status.autopopulate).to.exist;
     });
 
@@ -44,7 +43,6 @@ describe('Changelog', () => {
       expect(priority.type.name).to.be.equal('ObjectId');
       expect(priority.index).to.be.true;
       expect(priority.exists).to.be.true;
-      expect(priority.autoset).to.be.true;
       expect(priority.autopopulate).to.exist;
     });
 
@@ -59,7 +57,7 @@ describe('Changelog', () => {
       expect(assignee.type.name).to.be.equal('ObjectId');
       expect(assignee.index).to.be.true;
       expect(assignee.exists).to.be.true;
-      expect(assignee.autopopulate).to.exist;
+      // expect(assignee.autopopulate).to.exist;
     });
 
     it('should have changer field', () => {
@@ -73,7 +71,7 @@ describe('Changelog', () => {
       expect(changer.type.name).to.be.equal('ObjectId');
       expect(changer.index).to.be.true;
       expect(changer.exists).to.be.true;
-      expect(changer.autopopulate).to.exist;
+      // expect(changer.autopopulate).to.exist;
     });
 
     it('should have comment field', () => {
