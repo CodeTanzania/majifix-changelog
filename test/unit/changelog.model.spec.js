@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-
 import Changelog from '../../src/changelog.model';
 
 describe('Changelog', () => {
