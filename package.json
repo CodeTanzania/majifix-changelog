@@ -10,18 +10,14 @@
     "build": "rollup -c",
     "lint": "eslint --fix --ext .js src/ test/ rollup.config.js",
     "pretest": "npm run lint",
-    "test": "NODE_ENV=test mocha --require @babel/register test/**/*.spec.js",
+    "test": "NODE_ENV=test mocha --exit --require @babel/register test/**/*.spec.js",
     "docs": "doxdox 'lib/**/*.js' -p package.json -l markdown -o DOCUMENTATION.md",
     "cmt": "git add -A && git-cz",
     "commit": "git-cz",
     "commit:all": "git add -A && git-cz",
     "changelog": "changelog"
   },
-  "keywords": [
-    "lykmapipo",
-    "iso-lib-starter",
-    "isomophic"
-  ],
+  "keywords": ["lykmapipo", "iso-lib-starter", "isomophic"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeTanzania/majifix-changelog.git"
@@ -54,11 +50,15 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
     "@babel/register": "^7.4.0",
+    "@codetanzania/majifix-jurisdiction": "^1.5.4",
+    "@codetanzania/majifix-service": "^1.1.4",
+    "@codetanzania/majifix-service-group": "^1.2.5",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
     "@commitlint/travis-cli": "^7.5.2",
+    "@lykmapipo/mongoose-test-helpers": "^0.3.2",
     "chai": "^4.2.0",
-    "commitizen": "^3.1.0",
+    "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "doxdox": "^3.0.0",
     "eslint": "^5.16.0",
@@ -77,7 +77,8 @@
     "rollup": "^1.10.1",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
-    "sinon-mongoose": "^2.2.1"
+    "sinon-mongoose": "^2.2.1",
+    "supertest": "^4.0.2"
   },
   "peerDependencies": {
     "mongoose": "^5.5.2"
@@ -99,15 +100,10 @@
     }
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "npm run lint",
-      "git add -A"
-    ]
+    "src/**/*.js": ["npm run lint", "git add -A"]
   },
   "husky": {
     "hooks": {
