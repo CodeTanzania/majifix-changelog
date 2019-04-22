@@ -17,7 +17,11 @@
     "commit:all": "git add -A && git-cz",
     "changelog": "changelog"
   },
-  "keywords": ["lykmapipo", "iso-lib-starter", "isomophic"],
+  "keywords": [
+    "lykmapipo",
+    "iso-lib-starter",
+    "isomophic"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeTanzania/majifix-changelog.git"
@@ -56,7 +60,7 @@
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
     "@commitlint/travis-cli": "^7.5.2",
-    "@lykmapipo/mongoose-test-helpers": "^0.3.2",
+    "@lykmapipo/mongoose-test-helpers": "^0.5.0",
     "chai": "^4.2.0",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
@@ -77,7 +81,7 @@
     "rollup": "^1.10.1",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
-    "sinon-mongoose": "^2.2.1",
+    "sinon-mongoose": "^2.3.0",
     "supertest": "^4.0.2"
   },
   "peerDependencies": {
@@ -92,7 +96,7 @@
     "@lykmapipo/express-common": "^0.13.0",
     "async": "^2.6.2",
     "lodash": "^4.17.11",
-    "mongoose-rest-actions": "^0.24.1"
+    "mongoose-rest-actions": "^0.25.0"
   },
   "config": {
     "commitizen": {
@@ -100,10 +104,15 @@
     }
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
-    "src/**/*.js": ["npm run lint", "git add -A"]
+    "src/**/*.js": [
+      "npm run lint",
+      "git add -A"
+    ]
   },
   "husky": {
     "hooks": {
