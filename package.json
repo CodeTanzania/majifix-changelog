@@ -20,7 +20,13 @@
     "commit:all": "git add -A && git-cz",
     "changelog": "changelog"
   },
-  "keywords": ["codetanzania", "iso-lib-starter", "isomophic"],
+  "keywords": [
+    "codetanzania",
+    "majifix",
+    "majifix-module",
+    "changelog",
+    "isomophic"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeTanzania/majifix-changelog.git"
