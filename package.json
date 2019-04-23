@@ -11,13 +11,16 @@
     "lint": "eslint --fix --ext .js src/ test/ rollup.config.js",
     "pretest": "npm run lint",
     "test": "NODE_ENV=test mocha --exit --require @babel/register test/**/*.spec.js",
+    "dev": "npm run seed && npm run start",
+    "start": "BASE_PATH=./examples node ./examples/app.js",
+    "seed": "BASE_PATH=./examples node ./examples/seed.js",
     "docs": "doxdox 'lib/**/*.js' -p package.json -l markdown -o DOCUMENTATION.md",
     "cmt": "git add -A && git-cz",
     "commit": "git-cz",
     "commit:all": "git add -A && git-cz",
     "changelog": "changelog"
   },
-  "keywords": ["lykmapipo", "iso-lib-starter", "isomophic"],
+  "keywords": ["codetanzania", "iso-lib-starter", "isomophic"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeTanzania/majifix-changelog.git"
@@ -56,6 +59,7 @@
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
     "@commitlint/travis-cli": "^7.5.2",
+    "@lykmapipo/mongoose-common": "^0.18.1",
     "@lykmapipo/mongoose-test-helpers": "^0.5.0",
     "chai": "^4.2.0",
     "commitizen": "^3.1.1",
