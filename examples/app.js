@@ -1,6 +1,3 @@
-process.env.MONGODB_URI =
-  process.env.MONGODB_URI || 'mongodb://localhost/majifix-changelogs';
-
 /* dependencies */
 const app = require('@lykmapipo/express-common');
 const { connect, jsonSchema } = require('@lykmapipo/mongoose-common'); // eslint-disable-line
