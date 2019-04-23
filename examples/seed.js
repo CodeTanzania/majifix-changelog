@@ -138,7 +138,7 @@ connect(err => {
         changelogs = _.map(changelogs, changelog => {
           const sample = changelog;
           sample.request = serviceRequest;
-          sample.group = group;
+          sample.priority = priority;
           sample.status = status;
           return sample;
         });
