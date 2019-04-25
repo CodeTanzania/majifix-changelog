@@ -1,4 +1,3 @@
-import json from 'rollup-plugin-json';
 import pkg from './package.json';
 
 export default [
@@ -15,12 +14,6 @@ export default [
         strict: true,
       },
       { file: pkg.module, format: 'es' },
-    ],
-    plugins: [
-      json({
-        exclude: ['node_modules/**'],
-        preferConst: true,
-      }),
     ],
   },
 ];
