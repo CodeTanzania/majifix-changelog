@@ -99,6 +99,7 @@
     "@codetanzania/majifix-priority": "^1.4.4",
     "@codetanzania/majifix-service-request": "^0.2.5",
     "@codetanzania/majifix-status": "^1.4.5",
+    "@lykmapipo/common": "^0.17.0",
     "@lykmapipo/env": "^0.7.3",
     "@lykmapipo/express-common": "^0.13.0",
     "async": "^2.6.2",
@@ -111,10 +112,15 @@
     }
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
-    "src/**/*.js": ["npm run lint", "git add -A"]
+    "src/**/*.js": [
+      "npm run lint",
+      "git add -A"
+    ]
   },
   "husky": {
     "hooks": {

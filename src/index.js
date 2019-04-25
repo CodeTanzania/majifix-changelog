@@ -1,28 +1,20 @@
 import app from '@lykmapipo/express-common';
-import {
-  name,
-  description,
-  version,
-  license,
-  homepage,
-  repository,
-  bugs,
-  contributors,
-} from '../package.json';
+import { pkg } from '@lykmapipo/common';
 import Changelog from './changelog.model';
 import router from './http.router';
 
 /* declarations */
-const info = {
-  name,
-  description,
-  version,
-  license,
-  homepage,
-  repository,
-  bugs,
-  contributors,
-};
+const info = pkg(
+  'name',
+  'description',
+  'version',
+  'license',
+  'homepage',
+  'repository',
+  'bugs',
+  'sandbox',
+  'contributors'
+);
 
 /* extract api version from router version */
 const apiVersion = router.version;

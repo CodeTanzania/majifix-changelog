@@ -1,5 +1,6 @@
 import app, { Router } from '@lykmapipo/express-common';
 export { default as app } from '@lykmapipo/express-common';
+import { pkg } from '@lykmapipo/common';
 import mongoose, { Schema } from 'mongoose';
 import { Status } from '@codetanzania/majifix-status';
 import { Priority } from '@codetanzania/majifix-priority';
@@ -9,31 +10,6 @@ import actions from 'mongoose-rest-actions';
 import async from 'async';
 import _ from 'lodash';
 import { getString } from '@lykmapipo/env';
-
-const name = "majifix-changelog";
-const version = "0.1.0";
-const description = "A representation of a change/event on a service request(e.g Change of status, priority, assignments) by a specific system user.";
-const repository = {
-	type: "git",
-	url: "git+https://github.com/CodeTanzania/majifix-changelog.git"
-};
-const contributors = [
-	{
-		name: "lykmapipo",
-		email: "lallyelias87@gmail.com",
-		url: "https://github.com/lykmapipo"
-	},
-	{
-		name: "Benson Maruchu",
-		email: "benmaruchu@gmail.com",
-		url: "https://github.com/BenMaruchu"
-	}
-];
-const license = "MIT";
-const bugs = {
-	url: "https://github.com/CodeTanzania/majifix-changelog/issues"
-};
-const homepage = "https://github.com/CodeTanzania/majifix-changelog#readme";
 
 /**
  * @module Changelog
@@ -494,6 +470,25 @@ const router = new Router({
   version: API_VERSION,
 });
 
+/**
+ * @api {get} /changelogs List Changelogs
+ * @apiVersion 0.1.0
+ * @apiName GetChangelogs
+ * @apiGroup Changelog
+ * @apiDescription Returns a list of service requests changelogs
+ * @apiUse ChangelogRequestHeader
+ * @apiUse Changelogs
+ *
+ * @apiExample {curl} curl:
+ *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
+ *
+ * @apiUse ChangelogRequestHeaderExample
+ * @apiUse ChangelogsSuccessResponse
+ * @apiUse JWTError
+ * @apiUse JWTErrorExample
+ * @apiUse AuthorizationHeaderError
+ * @apiUse AuthorizationHeaderErrorExample
+ */
 router.get(PATH_LIST, function getChangelogs(request, response, next) {
   // extract request options
   const options = _.merge({}, request.mquery);
@@ -512,6 +507,25 @@ router.get(PATH_LIST, function getChangelogs(request, response, next) {
   });
 });
 
+/**
+ * @api {post} /changelogs Create new Changelog
+ * @apiVersion 0.1.0
+ * @apiName PostChangelogs
+ * @apiGroup Changelog
+ * @apiDescription Create a new ServiceRequest Changelog
+ * @apiUse ChangelogRequestHeader
+ * @apiUse Changelog
+ *
+ * @apiExample {curl} curl:
+ *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
+ *
+ * @apiUse ChangelogRequestHeaderExample
+ * @apiUse ChangelogsSuccessResponse
+ * @apiUse JWTError
+ * @apiUse JWTErrorExample
+ * @apiUse AuthorizationHeaderError
+ * @apiUse AuthorizationHeaderErrorExample
+ */
 router.post(PATH_LIST, function postChangelog(request, response, next) {
   // extract request body
   const body = _.merge({}, request.body);
@@ -530,6 +544,25 @@ router.post(PATH_LIST, function postChangelog(request, response, next) {
   });
 });
 
+/**
+ * @api {get} /changelogs/:id Get existing Changelog
+ * @apiVersion 0.1.0
+ * @apiName GetChangelog
+ * @apiGroup Changelog
+ * @apiDescription Returns existing service request with given :id
+ * @apiUse ChangelogRequestHeader
+ * @apiUse Changelog
+ *
+ * @apiExample {curl} curl:
+ *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
+ *
+ * @apiUse ChangelogRequestHeaderExample
+ * @apiUse ChangelogsSuccessResponse
+ * @apiUse JWTError
+ * @apiUse JWTErrorExample
+ * @apiUse AuthorizationHeaderError
+ * @apiUse AuthorizationHeaderErrorExample
+ */
 router.get(PATH_SINGLE, function getChangelog(request, response, next) {
   // extract request options
   const options = _.merge({}, request.mquery);
@@ -551,6 +584,25 @@ router.get(PATH_SINGLE, function getChangelog(request, response, next) {
   });
 });
 
+/**
+ * @api {patch} /changelogs/:id Patch existing Changelog
+ * @apiVersion 0.1.0
+ * @apiName PatchChangelog
+ * @apiGroup Changelog
+ * @apiDescription Patch existing changelog
+ * @apiUse ChangelogRequestHeader
+ * @apiUse Changelog
+ *
+ * @apiExample {curl} curl:
+ *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
+ *
+ * @apiUse ChangelogRequestHeaderExample
+ * @apiUse ChangelogsSuccessResponse
+ * @apiUse JWTError
+ * @apiUse JWTErrorExample
+ * @apiUse AuthorizationHeaderError
+ * @apiUse AuthorizationHeaderErrorExample
+ */
 router.patch(PATH_SINGLE, function patchChangelog(request, response, next) {
   // extract changelog id
   const { id } = request.params;
@@ -572,6 +624,25 @@ router.patch(PATH_SINGLE, function patchChangelog(request, response, next) {
   });
 });
 
+/**
+ * @api {put} /changelogs/:id Put existing Changelog
+ * @apiVersion 0.1.0
+ * @apiName PutChangelog
+ * @apiGroup Changelog
+ * @apiDescription Put existing changelog
+ * @apiUse ChangelogRequestHeader
+ * @apiUse Changelog
+ *
+ * @apiExample {curl} curl:
+ *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
+ *
+ * @apiUse ChangelogRequestHeaderExample
+ * @apiUse ChangelogsSuccessResponse
+ * @apiUse JWTError
+ * @apiUse JWTErrorExample
+ * @apiUse AuthorizationHeaderError
+ * @apiUse AuthorizationHeaderErrorExample
+ */
 router.put(PATH_SINGLE, function putChangelog(request, response, next) {
   // extract changelog id
   const { id } = request.params;
@@ -593,6 +664,25 @@ router.put(PATH_SINGLE, function putChangelog(request, response, next) {
   });
 });
 
+/**
+ * @api {delete} /changelogs/:id Delete existing Changelog
+ * @apiVersion 0.1.0
+ * @apiName DeleteChangelog
+ * @apiGroup Changelog
+ * @apiDescription Delete existing changelog
+ * @apiUse ChangelogRequestHeader
+ * @apiUse Changelog
+ *
+ * @apiExample {curl} curl:
+ *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
+ *
+ * @apiUse ChangelogRequestHeaderExample
+ * @apiUse ChangelogsSuccessResponse
+ * @apiUse JWTError
+ * @apiUse JWTErrorExample
+ * @apiUse AuthorizationHeaderError
+ * @apiUse AuthorizationHeaderErrorExample
+ */
 router.delete(PATH_SINGLE, function deleteChangelog(request, response, next) {
   // extract changelog id
   const { id } = request.params;
@@ -611,6 +701,25 @@ router.delete(PATH_SINGLE, function deleteChangelog(request, response, next) {
   });
 });
 
+/**
+ * @api {get} /servicerequests/:id/changelogs List Service Request Changelogs
+ * @apiVersion 0.1.0
+ * @apiName GetServiceRequestChangelogs
+ * @apiGroup Changelog
+ * @apiDescription Return a list of changelogs of specified service request
+ * @apiUse ChangelogRequestHeader
+ * @apiUse Changelog
+ *
+ * @apiExample {curl} curl:
+ *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
+ *
+ * @apiUse ChangelogRequestHeaderExample
+ * @apiUse ChangelogsSuccessResponse
+ * @apiUse JWTError
+ * @apiUse JWTErrorExample
+ * @apiUse AuthorizationHeaderError
+ * @apiUse AuthorizationHeaderErrorExample
+ */
 router.get(PATH_SERVICEREQUEST, function getChangelogs(
   request,
   response,
@@ -636,16 +745,17 @@ router.get(PATH_SERVICEREQUEST, function getChangelogs(
 });
 
 /* declarations */
-const info = {
-  name,
-  description,
-  version,
-  license,
-  homepage,
-  repository,
-  bugs,
-  contributors,
-};
+const info = pkg(
+  'name',
+  'description',
+  'version',
+  'license',
+  'homepage',
+  'repository',
+  'bugs',
+  'sandbox',
+  'contributors'
+);
 
 /* extract api version from router version */
 const apiVersion = router.version;
