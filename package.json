@@ -53,6 +53,9 @@
     "url": "https://github.com/CodeTanzania/majifix-changelog/issues"
   },
   "homepage": "https://github.com/CodeTanzania/majifix-changelog#readme",
+  "sandbox": {
+    "url": "https://majifix-changelog.herokuapp.com/v1/changelogs"
+  },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
@@ -112,15 +115,10 @@
     }
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "npm run lint",
-      "git add -A"
-    ]
+    "src/**/*.js": ["npm run lint", "git add -A"]
   },
   "husky": {
     "hooks": {
