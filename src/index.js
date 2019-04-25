@@ -1,5 +1,5 @@
-import app from '@lykmapipo/express-common';
 import { pkg } from '@lykmapipo/common';
+import app from '@lykmapipo/express-common';
 import Changelog from './changelog.model';
 import router from './http.router';
 
