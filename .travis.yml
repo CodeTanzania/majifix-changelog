@@ -4,3 +4,5 @@ services:
   - redis-server
 node_js:
   - '11.12.0'
+script:
+  - commitlint-travis
