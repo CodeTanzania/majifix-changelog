@@ -4,10 +4,14 @@ import { Service } from '@codetanzania/majifix-service';
 import { ServiceGroup } from '@codetanzania/majifix-service-group';
 import { ServiceRequest } from '@codetanzania/majifix-service-request';
 import { Status } from '@codetanzania/majifix-status';
+import app from '@lykmapipo/express-common';
 import { clear, create } from '@lykmapipo/mongoose-test-helpers';
 import { expect } from 'chai';
 import request from 'supertest';
-import { apiVersion, app, Changelog } from '../../src/index';
+import { apiVersion, Changelog, router } from '../../src/index';
+
+app.mount(router);
+const { testApp } = app;
 
 describe('Changelog', () => {
   describe('Rest API', () => {
@@ -48,7 +52,7 @@ describe('Changelog', () => {
     it.skip('should handle HTTP POST on /changelogs', done => {
       changelog = Changelog.fake();
 
-      request(app)
+      request(testApp)
         .post(`/${apiVersion}/changelogs`)
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
@@ -68,7 +72,7 @@ describe('Changelog', () => {
     });
 
     it('should handle HTTP GET on /changelogs', done => {
-      request(app)
+      request(testApp)
         .get(`/${apiVersion}/changelogs`)
         .set('Accept', 'application/json')
         .expect(200)
@@ -91,7 +95,7 @@ describe('Changelog', () => {
     });
 
     it('should handle HTTP GET on /changelogs/:id', done => {
-      request(app)
+      request(testApp)
         .get(`/${apiVersion}/changelogs/${changelog._id}`)
         .set('Accept', 'application/json')
         .expect(200)
@@ -111,7 +115,7 @@ describe('Changelog', () => {
     it('should handle HTTP PATCH on /changelogs/:id', done => {
       const patch = changelog.fakeOnly('comment');
 
-      request(app)
+      request(testApp)
         .patch(`/${apiVersion}/changelogs/${changelog._id}`)
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
@@ -134,7 +138,7 @@ describe('Changelog', () => {
     it('should handle HTTP PUT on /changelogs/:id', done => {
       const put = changelog.fakeOnly('comment');
 
-      request(app)
+      request(testApp)
         .put(`/${apiVersion}/changelogs/${changelog._id}`)
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
@@ -155,7 +159,7 @@ describe('Changelog', () => {
     });
 
     it('should handle HTTP DELETE on /changelogs/:id', done => {
-      request(app)
+      request(testApp)
         .delete(`/${apiVersion}/changelogs/${changelog._id}`)
         .set('Accept', 'application/json')
         .expect(200)
