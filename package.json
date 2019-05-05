@@ -106,7 +106,7 @@
     "@lykmapipo/express-common": "^0.16.0",
     "async": "^2.6.2",
     "lodash": "^4.17.11",
-    "mongoose-rest-actions": "^0.25.0"
+    "mongoose-rest-actions": "^0.26.0"
   },
   "config": {
     "commitizen": {
