@@ -107,11 +107,12 @@ describe('Changelog', () => {
       });
     });
 
-    it.skip('should throw if not exists', done => {
+    it('should throw if not exists', done => {
       changelog.del((error, deleted) => {
-        expect(error).to.exist;
-        expect(error.status).to.exist;
-        expect(deleted).to.not.exist;
+        expect(error).not.to.exist;
+        expect(deleted).to.exist;
+        expect(deleted._id).to.exist;
+        expect(deleted._id).to.be.eql(changelog._id);
         done();
       });
     });
