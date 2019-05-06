@@ -208,15 +208,14 @@ import Changelog from './changelog.model';
 
 /* constants */
 const API_VERSION = getString('API_VERSION', '1.0.0');
-const PATH_LIST = '/changelogs';
-const PATH_SINGLE = '/changelogs/:id';
-const PATH_SERVICEREQUEST = '/servicerequests/:servicerequest/changelogs';
+const PATH_LIST = '/servicerequests/:servicerequest/changelogs';
+const PATH_SINGLE = '/servicerequests/:servicerequest/changelogs/:id';
 const router = new Router({
   version: API_VERSION,
 });
 
 /**
- * @api {get} /changelogs List Changelogs
+ * @api {get} /servicerequests/:servicerequest/changelogs List Changelogs
  * @apiVersion 0.1.0
  * @apiName GetChangelogs
  * @apiGroup Changelog
@@ -236,7 +235,9 @@ const router = new Router({
  */
 router.get(PATH_LIST, function getChangelogs(request, response, next) {
   // extract request options
-  const options = _.merge({}, request.mquery);
+  const { servicerequest } = request.params;
+  const filter = servicerequest ? { filter: { request: servicerequest } } : {};
+  const options = _.merge({}, filter, request.mquery);
 
   Changelog.get(options, function onGetChangelogs(error, results) {
     // forward error
@@ -253,7 +254,7 @@ router.get(PATH_LIST, function getChangelogs(request, response, next) {
 });
 
 /**
- * @api {post} /changelogs Create new Changelog
+ * @api {post} /servicerequests/:servicerequest/changelogs Create new Changelog
  * @apiVersion 0.1.0
  * @apiName PostChangelogs
  * @apiGroup Changelog
@@ -273,7 +274,8 @@ router.get(PATH_LIST, function getChangelogs(request, response, next) {
  */
 router.post(PATH_LIST, function postChangelog(request, response, next) {
   // extract request body
-  const body = _.merge({}, request.body);
+  const { servicerequest } = request.params;
+  const body = _.merge({}, request.body, { request: servicerequest });
 
   Changelog.post(body, function onPostChangelog(error, created) {
     // forward error
@@ -283,14 +285,14 @@ router.post(PATH_LIST, function postChangelog(request, response, next) {
 
     // handle response
     else {
-      response.status(200);
+      response.status(201);
       response.json(created);
     }
   });
 });
 
 /**
- * @api {get} /changelogs/:id Get existing Changelog
+ * @api {get} /servicerequests/:servicerequest/changelogs Get existing Changelog
  * @apiVersion 0.1.0
  * @apiName GetChangelog
  * @apiGroup Changelog
@@ -330,7 +332,7 @@ router.get(PATH_SINGLE, function getChangelog(request, response, next) {
 });
 
 /**
- * @api {patch} /changelogs/:id Patch existing Changelog
+ * @api {patch} /servicerequests/:servicerequest/changelogs/:id  Patch existing Changelog
  * @apiVersion 0.1.0
  * @apiName PatchChangelog
  * @apiGroup Changelog
@@ -370,7 +372,7 @@ router.patch(PATH_SINGLE, function patchChangelog(request, response, next) {
 });
 
 /**
- * @api {put} /changelogs/:id Put existing Changelog
+ * @api {put} /servicerequests/:servicerequest/changelogs/:id Put existing Changelog
  * @apiVersion 0.1.0
  * @apiName PutChangelog
  * @apiGroup Changelog
@@ -410,7 +412,7 @@ router.put(PATH_SINGLE, function putChangelog(request, response, next) {
 });
 
 /**
- * @api {delete} /changelogs/:id Delete existing Changelog
+ * @api {delete} /servicerequests/:servicerequest/changelogs/:id  Delete existing Changelog
  * @apiVersion 0.1.0
  * @apiName DeleteChangelog
  * @apiGroup Changelog
@@ -442,49 +444,6 @@ router.delete(PATH_SINGLE, function deleteChangelog(request, response, next) {
     else {
       response.status(200);
       response.json(deleted);
-    }
-  });
-});
-
-/**
- * @api {get} /servicerequests/:id/changelogs List Service Request Changelogs
- * @apiVersion 0.1.0
- * @apiName GetServiceRequestChangelogs
- * @apiGroup Changelog
- * @apiDescription Return a list of changelogs of specified service request
- * @apiUse ChangelogRequestHeader
- * @apiUse Changelog
- *
- * @apiExample {curl} curl:
- *    curl -i https://majifix-changelog.herokuapp.com/v1/changelogs
- *
- * @apiUse ChangelogRequestHeaderExample
- * @apiUse ChangelogsSuccessResponse
- * @apiUse JWTError
- * @apiUse JWTErrorExample
- * @apiUse AuthorizationHeaderError
- * @apiUse AuthorizationHeaderErrorExample
- */
-router.get(PATH_SERVICEREQUEST, function getChangelogs(
-  request,
-  response,
-  next
-) {
-  // extract request options
-  const { servicerequest } = request.params;
-  const filter = servicerequest ? { filter: { request: servicerequest } } : {};
-  const options = _.merge({}, filter, request.mquery);
-
-  Changelog.get(options, function onGetChangelogs(error, found) {
-    // forward error
-    if (error) {
-      next(error);
-    }
-
-    // handle response
-    else {
-      response.status(200);
-      response.json(found);
     }
   });
 });
