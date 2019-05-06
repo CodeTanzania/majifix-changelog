@@ -2,9 +2,11 @@
 
 [![Build Status](https://travis-ci.org/CodeTanzania/majifix-changelog.svg?branch=develop)](https://travis-ci.org/CodeTanzania/majifix-changelog)
 [![Dependencies Status](https://david-dm.org/CodeTanzania/majifix-changelog/status.svg?style=flat-square)](https://david-dm.org/CodeTanzania/majifix-changelog)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/CodeTanzania/majifix-changelog/tree/develop)
 
-A representation of a change/event on a service request(e.g Change of status, priority, assignments) by a specific system user. 
+A representation of a change/event on a service request(e.g Change of status, priority, assignments) by a specific system user.
 
 ## Requirements
 
