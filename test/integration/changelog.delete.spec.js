@@ -68,8 +68,10 @@ describe('Changelog', () => {
     it('should throw if not exists', done => {
       Changelog.del(changelog._id, (error, deleted) => {
         expect(error).to.exist;
+        expect(error.name).to.exist;
+        expect(error.name).to.equal('DocumentNotFoundError');
+        expect(error.message).to.exist;
         expect(error.status).to.exist;
-        expect(error.message).to.be.equal('Not Found');
         expect(deleted).to.not.exist;
         done();
       });

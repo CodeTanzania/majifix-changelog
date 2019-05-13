@@ -85,7 +85,7 @@
     "lint-staged": "8.1.6",
     "mocha": "6.1.4",
     "mongoose": "5.5.7",
-    "prettier": "1.17.0",
+    "prettier": "1.17.1",
     "rimraf": "2.6.3",
     "rollup": "1.11.3",
     "sinon": "7.3.2",
@@ -106,7 +106,7 @@
     "@lykmapipo/express-common": "^0.17.0",
     "async": "^2.6.2",
     "lodash": "^4.17.11",
-    "mongoose-rest-actions": "^0.26.0"
+    "mongoose-rest-actions": "^0.27.0"
   },
   "config": {
     "commitizen": {
