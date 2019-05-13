@@ -85,7 +85,7 @@
     "lint-staged": "8.1.6",
     "mocha": "6.1.4",
     "mongoose": "5.5.7",
-    "prettier": "1.17.0",
+    "prettier": "1.17.1",
     "rimraf": "2.6.3",
     "rollup": "1.11.3",
     "sinon": "7.3.2",
