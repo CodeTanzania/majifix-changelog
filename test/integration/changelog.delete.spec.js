@@ -68,8 +68,10 @@ describe('Changelog', () => {
     it('should throw if not exists', done => {
       Changelog.del(changelog._id, (error, deleted) => {
         expect(error).to.exist;
+        expect(error.name).to.exist;
+        expect(error.name).to.equal('DocumentNotFoundError');
+        expect(error.message).to.exist;
         expect(error.status).to.exist;
-        expect(error.message).to.be.equal('Not Found');
         expect(deleted).to.not.exist;
         done();
       });
@@ -107,11 +109,12 @@ describe('Changelog', () => {
       });
     });
 
-    it.skip('should throw if not exists', done => {
+    it('should throw if not exists', done => {
       changelog.del((error, deleted) => {
-        expect(error).to.exist;
-        expect(error.status).to.exist;
-        expect(deleted).to.not.exist;
+        expect(error).not.to.exist;
+        expect(deleted).to.exist;
+        expect(deleted._id).to.exist;
+        expect(deleted._id).to.be.eql(changelog._id);
         done();
       });
     });

@@ -17,14 +17,14 @@
  * @public
  */
 
-import mongoose, { Schema } from 'mongoose';
-import { Status } from '@codetanzania/majifix-status';
+import { models } from '@codetanzania/majifix-common';
 import { Priority } from '@codetanzania/majifix-priority';
 import { ServiceRequest } from '@codetanzania/majifix-service-request';
-import { models } from '@codetanzania/majifix-common';
-import actions from 'mongoose-rest-actions';
+import { Status } from '@codetanzania/majifix-status';
 import async from 'async';
 import _ from 'lodash';
+import mongoose, { Schema } from 'mongoose';
+import actions from 'mongoose-rest-actions';
 
 /* contants */
 const { ObjectId } = Schema.Types;
@@ -135,7 +135,7 @@ const ChangelogSchema = new Schema(
 
     /**
      * @name changer
-     * @description A party who made changes to a servie request(issue)
+     * @description A party who made changes to a service request(issue)
      * @type {Object}
      * @see {@link Party}
      * @since 0.1.0

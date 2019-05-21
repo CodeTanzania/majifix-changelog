@@ -4,12 +4,15 @@ import { Service } from '@codetanzania/majifix-service';
 import { ServiceGroup } from '@codetanzania/majifix-service-group';
 import { ServiceRequest } from '@codetanzania/majifix-service-request';
 import { Status } from '@codetanzania/majifix-status';
+import { app, mount } from '@lykmapipo/express-common';
 import { clear, create } from '@lykmapipo/mongoose-test-helpers';
 import { expect } from 'chai';
 import request from 'supertest';
-import { apiVersion, app, Changelog } from '../../src/index';
+import { apiVersion, Changelog, router } from '../../src/index';
 
 describe('Changelog', () => {
+  mount(router);
+
   describe('Rest API', () => {
     let changelog;
     const jurisdiction = Jurisdiction.fake();
@@ -35,21 +38,13 @@ describe('Changelog', () => {
       create(serviceRequest, done);
     });
 
-    before(done => {
+    it('should handle HTTP POST on /servicerequests/:servicerequest/changelogs', done => {
       changelog = Changelog.fake();
-
-      changelog.request = serviceRequest;
       changelog.priority = priority;
       changelog.status = status;
 
-      create(changelog, done);
-    });
-
-    it.skip('should handle HTTP POST on /changelogs', done => {
-      changelog = Changelog.fake();
-
       request(app)
-        .post(`/${apiVersion}/changelogs`)
+        .post(`/${apiVersion}/servicerequests/${serviceRequest._id}/changelogs`)
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send(changelog)
@@ -61,15 +56,15 @@ describe('Changelog', () => {
           const created = response.body;
 
           expect(created._id).to.exist;
-          expect(created.name).to.exist;
+          expect(created.comment).to.exist;
 
           done(error, response);
         });
     });
 
-    it('should handle HTTP GET on /changelogs', done => {
+    it('should handle HTTP GET on servicerequests/:servicerequest/changelogs', done => {
       request(app)
-        .get(`/${apiVersion}/changelogs`)
+        .get(`/${apiVersion}/servicerequests/${serviceRequest._id}/changelogs`)
         .set('Accept', 'application/json')
         .expect(200)
         .expect('Content-Type', /json/)
@@ -90,9 +85,13 @@ describe('Changelog', () => {
         });
     });
 
-    it('should handle HTTP GET on /changelogs/:id', done => {
+    it('should handle HTTP GET on servicerequests/:servicerequest/changelogs/:id', done => {
       request(app)
-        .get(`/${apiVersion}/changelogs/${changelog._id}`)
+        .get(
+          `/${apiVersion}/servicerequests/${serviceRequest._id}/changelogs/${
+            changelog._id
+          }`
+        )
         .set('Accept', 'application/json')
         .expect(200)
         .end((error, response) => {
@@ -108,11 +107,15 @@ describe('Changelog', () => {
         });
     });
 
-    it('should handle HTTP PATCH on /changelogs/:id', done => {
+    it('should handle HTTP PATCH on /servicerequests/:servicerequest/changelogs/:id', done => {
       const patch = changelog.fakeOnly('comment');
 
       request(app)
-        .patch(`/${apiVersion}/changelogs/${changelog._id}`)
+        .patch(
+          `/${apiVersion}/servicerequests/${serviceRequest._id}/changelogs/${
+            changelog._id
+          }`
+        )
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send(patch)
@@ -131,11 +134,15 @@ describe('Changelog', () => {
         });
     });
 
-    it('should handle HTTP PUT on /changelogs/:id', done => {
+    it('should handle HTTP PUT on servicerequests/:servicerequest/changelogs/:id', done => {
       const put = changelog.fakeOnly('comment');
 
       request(app)
-        .put(`/${apiVersion}/changelogs/${changelog._id}`)
+        .put(
+          `/${apiVersion}/servicerequests/${serviceRequest._id}/changelogs/${
+            changelog._id
+          }`
+        )
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send(put)
@@ -154,9 +161,13 @@ describe('Changelog', () => {
         });
     });
 
-    it('should handle HTTP DELETE on /changelogs/:id', done => {
+    it('should handle HTTP DELETE on servicerequests/:servicerequest/changelogs/:id', done => {
       request(app)
-        .delete(`/${apiVersion}/changelogs/${changelog._id}`)
+        .delete(
+          `/${apiVersion}/servicerequests/${serviceRequest._id}/changelogs/${
+            changelog._id
+          }`
+        )
         .set('Accept', 'application/json')
         .expect(200)
         .end((error, response) => {

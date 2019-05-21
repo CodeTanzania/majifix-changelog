@@ -88,7 +88,9 @@ describe('Changelog', () => {
       Changelog.getById(fake._id, (error, found) => {
         expect(error).to.exist;
         expect(error.status).to.exist;
-        expect(error.message).to.be.equal('Not Found');
+        expect(error.name).to.exist;
+        expect(error.name).to.be.equal('DocumentNotFoundError');
+        expect(error.message).to.exist;
         expect(found).to.not.exist;
         done();
       });
