@@ -62,7 +62,7 @@
     "@babel/node": "7.2.2",
     "@babel/preset-env": "7.4.4",
     "@babel/register": "7.4.4",
-    "@codetanzania/majifix-jurisdiction": "1.5.4",
+    "@codetanzania/majifix-jurisdiction": "1.5.5",
     "@codetanzania/majifix-service": "1.1.4",
     "@codetanzania/majifix-service-group": "1.2.5",
     "@commitlint/cli": "7.6.1",
