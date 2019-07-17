@@ -71,7 +71,7 @@
     "@lykmapipo/mongoose-common": "0.23.1",
     "@lykmapipo/mongoose-test-helpers": "0.7.3",
     "chai": "4.2.0",
-    "commitizen": "3.1.1",
+    "commitizen": "3.1.2",
     "cz-conventional-changelog": "2.1.0",
     "doxdox": "3.0.0",
     "eslint": "5.16.0",
