@@ -87,7 +87,7 @@
     "mongoose": ">=5.5.10",
     "prettier": "1.17.1",
     "rimraf": "2.6.3",
-    "rollup": "1.12.3",
+    "rollup": "1.32.1",
     "sinon": "7.3.2",
     "sinon-chai": "3.3.0",
     "sinon-mongoose": "2.3.0",
