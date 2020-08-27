@@ -68,7 +68,7 @@
     "@commitlint/cli": "7.6.1",
     "@commitlint/config-conventional": "7.6.0",
     "@commitlint/travis-cli": "7.6.1",
-    "@lykmapipo/mongoose-common": "0.23.1",
+    "@lykmapipo/mongoose-common": "0.38.4",
     "@lykmapipo/mongoose-test-helpers": "0.7.3",
     "chai": "4.2.0",
     "commitizen": "3.1.1",
