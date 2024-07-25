@@ -70,7 +70,7 @@
     "@commitlint/travis-cli": "7.6.1",
     "@lykmapipo/mongoose-common": "0.23.1",
     "@lykmapipo/mongoose-test-helpers": "0.7.3",
-    "chai": "4.2.0",
+    "chai": "4.5.0",
     "commitizen": "3.1.1",
     "cz-conventional-changelog": "2.1.0",
     "doxdox": "3.0.0",
